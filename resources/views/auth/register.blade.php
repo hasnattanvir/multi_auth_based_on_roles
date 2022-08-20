@@ -12,69 +12,82 @@
   </head>
   <body>
       
-    <div class="contianer">
+    <div class="contianer mt-4">
         <div class="row justify-content-center">
             <div class="col-md-4 ">
-                <form>
-                    <div class="text-center mb-3">
-                      <p>Sign up with:</p>
-                      <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-facebook-f"></i>
-                      </button>
-              
-                      <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-google"></i>
-                      </button>
-              
-                      <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-twitter"></i>
-                      </button>
-              
-                      <button type="button" class="btn btn-link btn-floating mx-1">
-                        <i class="fab fa-github"></i>
-                      </button>
+                <form method="POST" action="{{ route('register') }}">
+                  @csrf
+
+                  @if(Session::get('success'))
+                    <div class="alert alert-success">
+                      {{ Session::get('success') }}
                     </div>
-              
-                    <p class="text-center">or:</p>
-              
+                  @endif
+
+                  @if(Session::get('error'))
+                    <div class="alert alert-success">
+                      {{ Session::get('error') }}
+                    </div>
+                  @endif
+
+
                     <!-- Name input -->
                     <div class="form-outline mb-4">
-                      <input type="text" id="registerName" class="form-control" />
+                      <input type="text" name="name" id="registerName" class="form-control" autofocus value="{{old('name')}}" />
                       <label class="form-label" for="registerName">Name</label>
+                      @error('name')
+                          <span >
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
               
                     <!-- Username input -->
                     <div class="form-outline mb-4">
-                      <input type="text" id="registerUsername" class="form-control" />
-                      <label class="form-label" for="registerUsername">Username</label>
+                      <input id="favoritecolor" class="form-control" type="text" name="favoritecolor"  value="{{old('favoritecolor')}}" />
+                      <label class="form-label" for="favoritecolor">Favoritecolor</label>
+                      @error('favoritecolor')
+                          <span >
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
               
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input type="email" id="registerEmail" class="form-control" />
+                      <input type="email" name="email" id="registerEmail" class="form-control"  value="{{old('email')}}" />
                       <label class="form-label" for="registerEmail">Email</label>
+
+                      @error('email')
+                          <span>
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
               
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                      <input type="password" id="registerPassword" class="form-control" />
+                      <input type="password" id="registerPassword" class="form-control" name="password" value="{{old('password')}}" />
                       <label class="form-label" for="registerPassword">Password</label>
+                      @error('password')
+                          <span>
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
               
                     <!-- Repeat Password input -->
                     <div class="form-outline mb-4">
-                      <input type="password" id="registerRepeatPassword" class="form-control" />
+                      <input type="password" id="registerRepeatPassword" class="form-control" name="password_confirmation"  value="{{old('password_confirmation')}}" />
                       <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                      @error('password_confirmation')
+                          <span>
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
               
-                    <!-- Checkbox -->
-                    <div class="form-check d-flex justify-content-center mb-4">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                        aria-describedby="registerCheckHelpText" />
-                      <label class="form-check-label" for="registerCheck">
-                        I have read and agree to the terms
-                      </label>
-                    </div>
+                  
               
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary mb-3" style="width: 100%;">Register In</button>

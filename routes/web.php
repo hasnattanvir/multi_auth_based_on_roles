@@ -32,6 +32,10 @@ Route::group(['prefix'=>'admin','middleware'=>['isAdmin','auth','PreventBackHist
     Route::get('dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('profile',[AdminController::class, 'profile'])->name('admin.profile');
     Route::get('settings',[AdminController::class, 'settings'])->name('admin.settings');
+
+    Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateinfo');
+    Route::post('update-profile-picture',[AdminController::class,'updatePicture'])->name('adminPictureUpdate');
+    Route::post('update-password',[AdminController::class,'changePasswordAdminForm'])->name('changePassword');
 });
 
 Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistory']],function(){

@@ -91,7 +91,7 @@
 
   $(function(){
   // update admin personal info
-    $('#AdminInfoForm').on('submit', function(e){
+    $('#AdminInifoForm').on('submit', function(e){
       e.preventDefault();
 
       $.ajax({

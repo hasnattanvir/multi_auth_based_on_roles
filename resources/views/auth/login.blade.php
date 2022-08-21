@@ -63,6 +63,7 @@
                             @endif
                         </div>
 
+                        {{-- password reset --}}
                         <div class="col">
                             <!-- Simple link -->
                             @if (Route::has('password.request'))
